@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Last Walk - A Digital Story</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/gsap@3.12.4/dist/gsap.min.js"></script>
+    <script src="https://unpkg.com/gsap@3.12.4/dist/ScrollTrigger.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            scroll-behavior: smooth;
+        }
+        .crimson {
+            font-family: 'Crimson Pro', serif;
+        }
+        .inter {
+            font-family: 'Inter', sans-serif;
+        }
+        .space-bg {
+            background: linear-gradient(
+                to bottom,
+                #000000,
+                #1a1a2e,
+                #16213e,
+                #0f3460
+            );
+            background-attachment: fixed;
+        }
+        .nav-blur {
+            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.3);
+        }
+        .story-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .gradient-text {
+            background: linear-gradient(45deg, #f6d365 0%, #fda085 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .parallax {
+            transform: translateZ(-1px) scale(2);
+        }
+        .stars {
+            position: fixed;
+            width: 1px;
+            height: 1px;
+            background: white;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body class="space-bg min-h-screen text-white">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 nav-blur">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <a href="{% url 'storymenu'%}" class="flex items-center space-x-2">
+                    <i class="bi bi-book-half text-2xl"></i>
+                    <span class="crimson text-xl font-semibold">Stories</span>
+                </a>
+                <a href="{% url 'home' %}" class="flex items-center space-x-2 hover:text-amber-400 transition">
+                    <i class="bi bi-house-door text-xl"></i>
+                    <span class="inter">Back Home</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Star Background -->
+    <div id="stars-container"></div>
+
+    <!-- Hero Section -->
+    <header class="min-h-screen flex items-center justify-center px-4 relative">
+        <div class="text-center max-w-4xl mx-auto opacity-0" id="hero">
+            <h1 class="crimson text-5xl md:text-7xl font-bold mb-6 gradient-text">The Last Walk</h1>
+            <p class="inter text-xl text-gray-300 mb-8">A tale of redemption, miracles, and the weight of time</p>
+            <div class="flex justify-center space-x-4">
+                <button onclick="scrollToStory()" class="inter bg-amber-400 text-black px-8 py-3 rounded-full hover:bg-amber-500 transition">
+                    Begin Reading
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Story Content -->
+    <main class="container mx-auto px-4 py-20">
+        <article class="max-w-3xl mx-auto story-card p-8 rounded-lg opacity-0" id="story">
+            <p class="inter text-lg leading-relaxed mb-6">
+                Paul sat on his porch, the weight of years pressing against his tired bones. The world had changed, but memories of Cold Mountain Penitentiary never faded. Especially the memory of <em>him</em>.
+            </p>
+            
+            <p class="inter text-lg leading-relaxed mb-6">
+                Back in the 1930s, Paul had been a prison guard overseeing death row—what they called <em>the Green Mile</em>, named after the faded lime-colored floors leading to the electric chair. That was where he met John Coffey, a giant of a man with sorrowful eyes and a heart too pure for the world.
+            </p>
+
+            <blockquote class="border-l-4 border-amber-400 pl-4 my-8 italic text-amber-200">
+                "I'm tired, boss. Tired of people being ugly to each other."
+                <footer class="mt-2 text-gray-400">- John Coffey</footer>
+            </blockquote>
+
+            <div class="space-y-6">
+                <p class="inter text-lg leading-relaxed">
+                    Years passed, but Paul never forgot. The strangest part? He didn't age like other men. Coffey had left something inside him—a piece of that unexplainable power. Paul lived long enough to watch his friends and family fade away, outliving nearly everyone he loved.
+                </p>
+
+                <p class="inter text-lg leading-relaxed">
+                    Now, as Paul sat in the quiet of his old age, he looked at the night sky. Somewhere beyond the stars, Coffey was free, far from the cruelty of this world. And Paul? He was still waiting for his own last walk.
+                </p>
+            </div>
+        </article>
+    </main>
+
+    <script>
+        // Create stars
+        function createStars() {
+            const container = document.getElementById('stars-container');
+            for (let i = 0; i < 200; i++) {
+                const star = document.createElement('div');
+                star.className = 'stars';
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.animation = `twinkle ${Math.random() * 5 + 3}s infinite`;
+                container.appendChild(star);
+            }
+        }
+        createStars();
+
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero Animation
+        gsap.to("#hero", {
+            opacity: 1,
+            y: 0,
+            duration: 1.5,
+            ease: "power4.out"
+        });
+
+        // Story Animation
+        gsap.to("#story", {
+            scrollTrigger: {
+                trigger: "#story",
+                start: "top 80%",
+                end: "top 20%",
+                toggleActions: "play none none reverse"
+            },
+            opacity: 1,
+            y: 0,
+            duration: 1
+        });
+
+        function scrollToStory() {
+            document.getElementById('story').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Add smooth parallax effect
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const stars = document.querySelectorAll('.stars');
+            stars.forEach(star => {
+                star.style.transform = `translateY(${scrolled * 0.3}px)`;
+            });
+        });
+    </script>
+</body>

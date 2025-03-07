@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap');
+
+* {
+    scroll-behavior: smooth;
+}
+
+.playfair {
+    font-family: 'Playfair Display', serif;
+}
+
+.poppins {
+    font-family: 'Poppins', sans-serif;
+}
+
+.wood-texture {
+    background-image: url('https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?q=80&w=2187&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.wood-texture::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8));
+}
+
+.article-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.article-card:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-5px);
+}

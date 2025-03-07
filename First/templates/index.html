@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wooden Blog Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            scroll-behavior: smooth;
+        }
+
+        .playfair {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .poppins {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .wood-texture {
+            background-image: url('https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?q=80&w=2187&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .wood-texture::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8));
+        }
+
+        .article-page {
+            display: none;
+        }
+
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+
+        .hover-scale:hover {
+            transform: scale(1.02);
+        }
+
+        .article-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .article-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body class="wood-texture min-h-screen">
+    <!-- Home Page -->
+    <div id="homePage">
+        <!-- Navigation -->
+        <nav class="fixed w-full z-50 bg-black bg-opacity-50 backdrop-blur-md">
+            <div class="container mx-auto px-4 py-4">
+                <div class="flex justify-between items-center">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/widecanvas-d0dd4.appspot.com/o/logos%2FScreenshot%202025-02-16%20173220.png?alt=media&token=9f0a6280-7047-438e-9a52-d36bc166bcc2" 
+                         alt="Logo" 
+                         class="h-10">
+                    <div class="hidden md:flex space-x-8">
+                        <a href="#home" class="text-white poppins hover:text-gray-300 transition">Home</a>
+                        <a href="#articles" class="text-white poppins hover:text-gray-300 transition">Articles</a>
+                        <a href="#about" class="text-white poppins hover:text-gray-300 transition">About</a>
+                    </div>
+                    <button class="md:hidden text-white text-2xl">
+                        <i class="bi bi-list"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section id="home" class="relative min-h-screen flex items-center justify-center px-4">
+            <div class="text-center z-10">
+                <h1 class="playfair text-4xl md:text-6xl text-white font-bold mb-6">Welcome to Your Story</h1>
+                <p class="poppins text-gray-300 text-lg md:text-xl mb-8 max-w-2xl mx-auto">Discover thoughtful articles and personal narratives in a sophisticated space designed for meaningful reading.</p>
+                <button onclick="showArticlePage()" class="poppins bg-white text-black px-8 py-3 rounded-full hover:bg-gray-200 transition hover-scale">
+                    Start Reading
+                </button>
+            </div>
+        </section>
+
+        <!-- Articles Section -->
+        <section id="articles" class="relative py-20 px-4">
+            <div class="container mx-auto">
+                <h2 class="playfair text-3xl md:text-4xl text-white font-bold mb-12 text-center">Featured Articles</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Article Cards -->
+                    <article class="article-card rounded-lg p-6">
+                        <img src="https://firebasestorage.googleapis.com/v0/b/widecanvas-d0dd4.appspot.com/o/additional-images%2FShaurya3.jpg?alt=media&token=24c0af75-d8fe-4de3-93fe-99660ef1edf7" 
+                             alt="Article 1" 
+                             class="w-full h-48 object-cover rounded-lg mb-4">
+                        <h3 class="playfair text-xl text-white font-bold mb-2">The Art of Storytelling</h3>
+                        <p class="poppins text-gray-300 mb-4">Explore the nuances of crafting compelling narratives that resonate with readers.</p>
+                        <a href="#" onclick="showArticlePage()" class="poppins text-white hover:text-gray-300 inline-flex items-center">
+                            Read More <i class="bi bi-arrow-right ml-2"></i>
+                        </a>
+                    </article>
+
+                    <article class="article-card rounded-lg p-6">
+                        <img src="https://firebasestorage.googleapis.com/v0/b/widecanvas-d0dd4.appspot.com/o/additional-images%2FShaurya.jpg?alt=media&token=713ebba7-7154-4087-bbfc-de40d56ce285" 
+                             alt="Article 2" 
+                             class="w-full h-48 object-cover rounded-lg mb-4">
+                        <h3 class="playfair text-xl text-white font-bold mb-2">Finding Your Voice</h3>
+                        <p class="poppins text-gray-300 mb-4">Discover the power of authentic expression in your writing journey.</p>
+                        <a href="#" onclick="showArticlePage()" class="poppins text-white hover:text-gray-300 inline-flex items-center">
+                            Read More <i class="bi bi-arrow-right ml-2"></i>
+                        </a>
+                    </article>
+
+                    <article class="article-card rounded-lg p-6">
+                        <img src="https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?q=80&w=2274&auto=format&fit=crop" 
+                             alt="Article 3" 
+                             class="w-full h-48 object-cover rounded-lg mb-4">
+                        <h3 class="playfair text-xl text-white font-bold mb-2">The Writing Process</h3>
+                        <p class="poppins text-gray-300 mb-4">A deep dive into the creative journey of writing and self-expression.</p>
+                        <a href="#" onclick="showArticlePage()" class="poppins text-white hover:text-gray-300 inline-flex items-center">
+                            Read More <i class="bi bi-arrow-right ml-2"></i>
+                        </a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="relative py-8 bg-black bg-opacity-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center">
+                    <p class="poppins text-gray-400">&copy; 2024 Your Blog Platform. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Article Page -->
+    <div id="articlePage" class="article-page">
+        <nav class="fixed w-full z-50 bg-black bg-opacity-50 backdrop-blur-md">
+            <div class="container mx-auto px-4 py-4">
+                <div class="flex justify-between items-center">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/widecanvas-d0dd4.appspot.com/o/logos%2FScreenshot%202025-02-16%20173220.png?alt=media&token=9f0a6280-7047-438e-9a52-d36bc166bcc2" 
+                         alt="Logo" 
+                         class="h-10">
+                    <button onclick="showHomePage()" class="poppins text-white hover:text-gray-300 transition">
+                        <i class="bi bi-arrow-left mr-2"></i> Back to Home
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container mx-auto px-4 pt-24 pb-12">
+            <article class="max-w-3xl mx-auto text-white relative z-10">
+                <h1 class="playfair text-4xl md:text-5xl font-bold mb-6">Dromomania and Life: A Voyage Through Every Phase</h1>
+                <div class="poppins text-lg leading-relaxed space-y-6">
+                    <p>There's something about constantly moving, exploring, and experiencing new places that feels like truly living. Being a dromomaniac—someone with an unshakable urge to travel—allows us to go through a complete cycle of life's phases. Every journey becomes a chapter, and each arc of this circle teaches something invaluable. From witnessing life at its most beautiful to experiencing its harshest realities, from indulging in luxuries to enduring hardships—solo travel exposes you to it all.</p>
+                    
+                    <p>For me, solo travel is a mirror to life itself. It forces you to step into the unknown, where nothing is certain. You realize how easily things can fall apart, and yet, at every setback, you learn how to rebuild. This isn't just a concept—it's something I have personally experienced. At one point, indecisiveness and lack of confidence led me to places I never truly wanted to be, making me feel stuck in situations I didn't choose. But through solo travel, I learned one of the most important lessons: it's YOU who must take the call. And even if you fail, at least it's your decision—YOU own it with confidence rather than regret. It's an empowering realization that has reshaped the way I approach not just travel, but life itself.</p>
+
+                    <p>One of the most profound realizations I've had through solo travel is the idea of trading momentary indulgence for the richness of genuine experience. The world outside your comfort zone isn't always pretty—it's raw, real, and often challenging. But as you witness the struggles of others, you start seeing your own "hardships" in a different light. What may seem difficult for you might be a luxury for someone else. Traveling makes you more empathetic, grateful, and self-aware. More importantly, it teaches you to live without fear or hesitation.</p>
+
+                    <blockquote class="italic border-l-4 border-white pl-4 my-8">
+                        "Twenty years from now, you'll be more disappointed by the things you didn't do than by the ones you did. So throw off the bowlines. Sail away from the safe harbor. Catch the trade winds in your sails. Explore. Dream. Discover."
+                        <footer class="mt-2">- Mark Twain</footer>
+                    </blockquote>
+
+                    <p>At the end of a solo journey, you don't just return with memories—you return transformed. You realize that true assets aren't material possessions but the experiences that shape you. The journey wasn't just a trip; it was a process of self-growth, refining you into a more confident, decisive, and compassionate individual.</p>
+                    
+                    <p>Solo travel, then, is not an expense—it's an investment in self-improvement. It teaches you that the world is vast, full of lessons, and that you are your own best guide.</p>
+                </div>
+            </article>
+        </div>
+    </div>
+
+    <script>
+        function showArticlePage() {
+            document.getElementById('homePage').style.display = 'none';
+            document.getElementById('articlePage').style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+
+        function showHomePage() {
+            document.getElementById('articlePage').style.display = 'none';
+            document.getElementById('homePage').style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>

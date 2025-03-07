@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyberpunk Social Network</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --neon-green: #39ff14;
+            --cyber-blue: #00ff9f;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #0a0a0a;
+            color: #ffffff;
+        }
+        .cyber-heading {
+            font-family: 'Orbitron', sans-serif;
+        }
+        .neon-border {
+            box-shadow: 0 0 5px var(--cyber-blue),
+                        0 0 10px var(--cyber-blue),
+                        0 0 15px var(--cyber-blue);
+        }
+        .post-card {
+            transition: all 0.3s ease;
+        }
+        .post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 15px rgba(57, 255, 20, 0.3);
+        }
+        .modal {
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+        }
+        @keyframes glowPulse {
+            0% { box-shadow: 0 0 5px var(--cyber-blue); }
+            50% { box-shadow: 0 0 20px var(--cyber-blue); }
+            100% { box-shadow: 0 0 5px var(--cyber-blue); }
+        }
+        .cyber-button {
+            animation: glowPulse 2s infinite;
+        }
+        .story-circle {
+            background: linear-gradient(45deg, var(--cyber-blue), var(--cyber-blue));
+        }
+        .chat-message {
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+        .message-input {
+            background: rgba(57, 255, 20, 0.1);
+            border: 1px solid var(--neon-green);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--neon-green);
+            border-radius: 10px;
+        }
+        .active-tab {
+            border-bottom: 2px solid var(--neon-green);
+            color: var(--neon-green);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <div class="container mx-auto p-4">
+        <header class="flex justify-between items-center py-4 border-b border-gray-700">
+            <h1 class="text-2xl font-bold text-cyan-400 cyber-heading">CyberNet</h1>
+            <nav>
+                <ul class="flex space-x-4">
+                    <li><a href="#" class="hover:text-cyan-400">Home</a></li>
+                    <li><a href="#" class="hover:text-cyan-400">Profile</a></li>
+                    <li><a href="#" class="hover:text-cyan-400">Messages</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section class="mt-6">
+            <div class="bg-gray-800 p-4 rounded-lg">
+                <h2 class="text-xl font-semibold">Profile</h2>
+                <div class="flex items-center space-x-4 mt-4">
+                    <img id="profile-pic" src="https://via.placeholder.com/100" alt="Profile Picture" class="w-24 h-24 rounded-full border-2 border-cyan-400">
+                    <input type="file" id="upload-pic" class="hidden" accept="image/*">
+                    <button onclick="document.getElementById('upload-pic').click()" class="bg-cyan-500 px-4 py-2 rounded">Upload DP</button>
+                </div>
+                <textarea id="bio" class="w-full mt-4 p-2 bg-gray-700 rounded" placeholder="Write your bio..."></textarea>
+                <button class="mt-2 bg-cyan-500 px-4 py-2 rounded">Save Bio</button>
+            </div>
+
+            <div class="mt-6 bg-gray-800 p-4 rounded-lg">
+                <h2 class="text-xl font-semibold">Your Posts</h2>
+                <div id="posts" class="mt-4 space-y-2">
+                    <p class="text-gray-400">No posts yet...</p>
+                </div>
+            </div>
+
+            <div class="mt-6 bg-gray-800 p-4 rounded-lg">
+                <h2 class="text-xl font-semibold">Your Highlights</h2>
+                <div id="highlights" class="mt-4 flex space-x-2 overflow-x-auto">
+                    <p class="text-gray-400">No highlights yet...</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        document.getElementById('upload-pic').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('profile-pic').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeoSocial - Cyberpunk Social Network</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --neon-green: #39ff14;
+            --cyber-blue: #00ff9f;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #0a0a0a;
+            color: #ffffff;
+        }
+        .cyber-heading {
+            font-family: 'Orbitron', sans-serif;
+        }
+        .neon-border {
+            box-shadow: 0 0 5px var(--cyan),
+                        0 0 10px var(--cyan),
+                        0 0 15px var(--cyan);
+        }
+        .post-card {
+            transition: all 0.3s ease;
+        }
+        .post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 15px rgba(57, 255, 20, 0.3);
+        }
+        .modal {
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+        }
+        @keyframes glowPulse {
+            0% { box-shadow: 0 0 5px var(--cyber-blue); }
+            50% { box-shadow: 0 0 20px var(--cyber-blue); }
+            100% { box-shadow: 0 0 5px var(--cyber-blue); }
+        }
+        .cyber-button {
+            animation: glowPulse 2s infinite;
+        }
+        .story-circle {
+            background: linear-gradient(45deg, var(--cyan-blue), var(--cyber-blue));
+        }
+        .chat-message {
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+        .message-input {
+            background: rgba(57, 255, 20, 0.1);
+            border: 1px solid var(--neon-green);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--neon-green);
+            border-radius: 10px;
+        }
+        .active-tab {
+            border-bottom: 2px solid var(--neon-green);
+            color: var(--neon-green);
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-black/90 backdrop-blur-md border-b border-[#39ff14]/30 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <h1 class="cyber-heading text-2xl text-[#39ff14]">NEOSOCIAL</h1>
+                <div class="flex items-center gap-4">
+                    <button id="searchBtn" class="text-[#39ff14]">
+                        <i class="bi bi-search text-xl"></i>
+                    </button>
+                    <button id="darkModeToggle" class="text-[#39ff14]">
+                        <i class="bi bi-moon-fill text-xl"></i>
+                    </button>
+                    <div class="relative">
+                        <button id="notificationBtn" class="text-[#39ff14]">
+                            <i class="bi bi-bell-fill text-xl"></i>
+                            <span class="absolute -top-1 -right-1 bg-red-500 rounded-full w-4 h-4 text-xs flex items-center justify-center">3</span>
+                        </button>
+                    </div>
+                    <button id="loginBtn" class="cyber-button bg-black text-[#39ff14] px-4 py-2 rounded-md border border-[#39ff14]">Login</button>
+                </div>
+            </div>
+            <!-- Tab Navigation -->
+            <div class="flex justify-around mt-4">
+                <button class="tab-btn active-tab px-4 py-2" data-tab="home">Home</button>
+                <button class="tab-btn px-4 py-2" data-tab="messenger">Messenger</button>
+                <button class="tab-btn px-4 py-2" data-tab="profile">Profile</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Sections -->
+    <main class="container mx-auto px-4 pt-32 pb-16">
+        <!-- Home Tab -->
+        <section id="homeTab" class="tab-content">
+            <!-- Stories Section -->
+            <div class="flex overflow-x-auto gap-4 py-4 mb-6">
+                <div class="flex-shrink-0">
+                    <div class="w-16 h-16 story-circle rounded-full flex items-center justify-center cursor-pointer">
+                        <i class="bi bi-plus-lg text-2xl"></i>
+                    </div>
+                    <p class="text-xs text-center mt-1">Add Story</p>
+                </div>
+                <!-- Sample Stories -->
+                <div class="flex-shrink-0">
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-r from-[#39ff14] to-[#00ff9f] p-[2px]">
+                        <div class="w-full h-full rounded-full bg-cover bg-center" style="background-image: url('https://source.unsplash.com/random/100x100?cyberpunk')"></div>
+                    </div>
+                    <p class="text-xs text-center mt-1">User_01</p>
+                </div>
+            </div>
+
+            <!-- Create Post -->
+            <div class="bg-gray-900 rounded-lg p-4 mb-6 border border-[#39ff14]/20">
+                <div class="flex gap-4 items-center">
+                    <img src="https://source.unsplash.com/random/40x40?avatar" alt="User" class="w-10 h-10 rounded-full">
+                    <input type="text" placeholder="Share your thoughts..." class="bg-black/50 rounded-full px-4 py-2 flex-1 border border-[#39ff14]/20 focus:outline-none focus:border-[#39ff14]">
+                    <button class="text-[#39ff14]"><i class="bi bi-image text-xl"></i></button>
+                </div>
+            </div>
+
+            <!-- Feed -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="postsFeed">
+                <!-- Posts will be dynamically added here -->
+            </div>
+        </section>
+
+        <!-- Messenger Tab -->
+        <section id="messengerTab" class="tab-content hidden">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 h-[calc(100vh-200px)]">
+                <!-- Contacts List -->
+                <div class="bg-gray-900 rounded-lg p-4 border border-[#39ff14]/20">
+                    <h3 class="cyber-heading text-[#39ff14] mb-4">Contacts</h3>
+                    <div class="space-y-4">
+                        <!-- Contact items will be dynamically added here -->
+                    </div>
+                </div>
+
+                <!-- Chat Area -->
+                <div class="md:col-span-2 bg-gray-900 rounded-lg p-4 border border-[#39ff14]/20 flex flex-col">
+                    <div class="flex-1 overflow-y-auto mb-4" id="chatMessages">
+                        <!-- Messages will be dynamically added here -->
+                    </div>
+                    <div class="flex gap-2">
+                        <input type="text" id="messageInput" placeholder="Type a message..." class="message-input flex-1 rounded-full px-4 py-2 focus:outline-none">
+                        <button id="sendMessage" class="cyber-button bg-black text-[#39ff14] px-4 py-2 rounded-full border border-[#39ff14]">
+                            <i class="bi bi-send"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Profile Tab -->
+        <section id="profileTab" class="tab-content hidden">
+          <div class="profile-container">
+        <!-- Profile Picture Upload -->
+          <div class="profile-picture">
+              <img id="profileImage" src="default-profile.png" alt="Profile Picture">
+              <input type="file" id="uploadProfilePic" accept="image/*">
+          </div>
+
+        <!-- Bio Section -->
+          <div class="bio-section">
+              <textarea id="bioInput" placeholder="Write your bio..."></textarea>
+              <button id="saveBio">Save Bio</button>
+          </div>
+
+        <!-- View Posts & Highlights -->
+          <div class="profile-options">
+              <button id="viewPosts">View Your Posts</button>
+              <button id="viewHighlights">View Highlights</button>
+          </div>
+
+        <!-- Posts & Highlights Display -->
+          <div id="profileContent" class="hidden">
+              <div id="postsSection" class="hidden">
+                  <h3>Your Posts</h3>
+                  <div id="userPosts"></div>
+              </div>
+
+              <div id="highlightsSection" class="hidden">
+                  <h3>Your Highlights</h3>
+                  <div id="userHighlights"></div>
+              </div>
+          </div>
+      </div>
+    </section>
+    </main>
+
+    <!-- Modals -->
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal fixed inset-0 flex items-center justify-center hidden z-50">
+        <div class="bg-gray-900 p-8 rounded-lg border border-[#39ff14] w-full max-w-md mx-4">
+            <h2 class="cyber-heading text-2xl mb-6 text-[#39ff14]">LOGIN</h2>
+            <form class="space-y-4">
+                <div>
+                    <input type="email" placeholder="Email" class="w-full bg-black border border-[#39ff14] rounded px-4 py-2 text-[#39ff14] focus:outline-none focus:ring-2 focus:ring-[#39ff14]">
+                </div>
+                <div>
+                    <input type="password" placeholder="Password" class="w-full bg-black border border-[#39ff14] rounded px-4 py-2 text-[#39ff14] focus:outline-none focus:ring-2 focus:ring-[#39ff14]">
+                </div>
+                <button type="submit" class="w-full cyber-button bg-[#39ff14] text-black font-bold py-2 rounded">Enter</button>
+                <p class="text-center text-sm">
+                    <button type="button" id="createAccountBtn" class="text-[#39ff14]">Create Account</button> | 
+                    <a href="#" class="text-[#39ff14]">Forgot Password?</a>
+                </p>
+            </form>
+            <button class="closeModal absolute top-4 right-4 text-[#39ff14]">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Post Modal -->
+    <div id="postModal" class="modal fixed inset-0 flex items-center justify-center hidden z-50">
+        <div class="bg-gray-900 rounded-lg border border-[#39ff14] w-full max-w-4xl mx-4 relative">
+            <button class="closeModal absolute top-4 right-4 text-[#39ff14] z-10">
+                <i class="bi bi-x-lg"></i>
+            </button>
+            <div class="grid grid-cols-1 md:grid-cols-2">
+                <div class="relative">
+                    <img id="modalImage" src="" alt="Post" class="w-full h-full object-cover rounded-l-lg">
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center gap-3 mb-4">
+                        <img id="modalUserImage" src="" alt="User" class="w-10 h-10 rounded-full">
+                        <span id="modalUsername" class="font-medium"></span>
+                    </div>
+                    <p id="modalCaption" class="text-gray-300 mb-4"></p>
+                    <div class="flex items-center gap-4 mb-4">
+                        <button class="flex items-center gap-1 text-[#39ff14]">
+                            <i class="bi bi-heart"></i>
+                            <span id="modalLikes">0</span>
+                        </button>
+                        <button class="flex items-center gap-1 text-[#39ff14]">
+                            <i class="bi bi-chat"></i>
+                            <span id="modalComments">0</span>
+                        </button>
+                    </div>
+                    <div class="border-t border-[#39ff14]/20 pt-4">
+                        <div id="modalCommentsList" class="max-h-40 overflow-y-auto mb-4">
+                            <!-- Comments will be dynamically added here -->
+                        </div>
+                        <div class="flex gap-2">
+                            <input type="text" placeholder="Add a comment..." class="flex-1 bg-black border border-[#39ff14] rounded px-4 py-2 text-[#39ff14] focus:outline-none">
+                            <button class="cyber-button bg-black text-[#39ff14] px-4 py-2 rounded border border-[#39ff14]">Post</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample data
+        const posts = [
+            {
+                id: 1,
+                user: 'CyberUser',
+                userImage: 'https://source.unsplash.com/random/40x40?avatar',
+                image: 'https://source.unsplash.com/random/400x300?cyberpunk',
+                caption: 'Experience the future today! 🌐 #cyberpunk #neon',
+                likes: 2500,
+                comments: 482,
+                isLiked: true
+            },
+            // Add more posts here
+        ];
+
+        const contacts = [
+            {
+                id: 1,
+                name: 'NeoRunner',
+                image: 'https://source.unsplash.com/random/40x40?cyber',
+                online: true,
+                lastMessage: 'Hey, check this out!'
+            },
+            // Add more contacts here
+        ];
+
+        // Functions to handle UI updates
+        function renderPosts() {
+            const feed = document.getElementById('postsFeed');
+            feed.innerHTML = posts.map(post => `
+                <article class="post-card bg-gray-900 rounded-lg overflow-hidden border border-[#39ff14]/20" data-post-id="${post.id}">
+                    <div class="relative">
+                        <img src="${post.image}" alt="Post" class="w-full h-48 object-cover">
+                        <div class="absolute top-4 left-4 flex items-center gap-2">
+                            <img src="${post.userImage}" alt="User" class="w-8 h-8 rounded-full">
+                            <span class="text-sm font-medium">${post.user}</span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-gray-300">${post.caption}</p>
+                        <div class="mt-4 flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <button class="like-btn flex items-center gap-1 text-[#39ff14]" data-post-id="${post.id}">
+                                    <i class="bi ${post.isLiked ? 'bi-heart-fill' : 'bi-heart'}"></i>
+                                    <span>${post.likes}</span>
+                                </button>
+                                <button class="flex items-center gap-1 text-[#39ff14]">
+                                    <i class="bi bi-chat"></i>
+                                    <span>${post.comments}</span>
+                                </button>
+                            </div>
+                            <button class="text-[#39ff14]">
+                                <i class="bi bi-bookmark"></i>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            `).join('');
+
+            // Add click handlers
+            document.querySelectorAll('.post-card').forEach(card => {
+                card.addEventListener('click', (e) => {
+                    if (!e.target.closest('.like-btn')) {
+                        showPostModal(card.dataset.postId);
+                    }
+                });
+            });
+
+            document.querySelectorAll('.like-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    toggleLike(btn.dataset.postId);
+                });
+            });
+        }
+
+        function renderContacts() {
+            const contactsList = document.querySelector('#messengerTab .space-y-4');
+            contactsList.innerHTML = contacts.map(contact => `
+                <div class="flex items-center gap-3 cursor-pointer hover:bg-gray-800 p-2 rounded">
+                    <div class="relative">
+                        <img src="${contact.image}" alt="${contact.name}" class="w-10 h-10 rounded-full">
+                        ${contact.online ? '<div class="absolute bottom-0 right-0 w-3 h-3 bg-[#39ff14] rounded-full border-2 border-gray-900"></div>' : ''}
+                    </div>
+                    <div>
+                        <h4 class="font-medium">${contact.name}</h4>
+                        <p class="text-sm text-gray-400">${contact.lastMessage}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            renderPosts();
+            renderContacts();
+            initializeTabSystem();
+            initializeModals();
+            initializeChat();
+        });
+
+        // Tab System
+        function initializeTabSystem() {
+            const tabs = document.querySelectorAll('.tab-btn');
+            const contents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const target = tab.dataset.tab;
+                    
+                    // Update tab buttons
+                    tabs.forEach(t => t.classList.remove('active-tab'));
+                    tab.classList.add('active-tab');
+                    
+                    // Update content
+                    contents.forEach(content => {
+                        content.classList.add('hidden');
+                        if (content.id === `${target}Tab`) {
+                            content.classList.remove('hidden');
+                        }
+                    });
+                });
+            });
+        }
+
+        // Modal System
+        function initializeModals() {
+            document.querySelectorAll('.closeModal').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.modal').forEach(modal => {
+                        modal.classList.add('hidden');
+                    });
+                });
+            });
+
+            document.getElementById('loginBtn').addEventListener('click', () => {
+                document.getElementById('loginModal').classList.remove('hidden');
+            });
+        }
+
+        // Chat System
+        function initializeChat() {
+            const messageInput = document.getElementById('messageInput');
+            const sendButton = document.getElementById('sendMessage');
+            const chatMessages = document.getElementById('chatMessages');
+
+            sendButton.addEventListener('click', () => {
+                const message = messageInput.value.trim();
+                if (message) {
+                    const messageElement = document.createElement('div');
+                    messageElement.className = 'chat-message bg-[#39ff14]/10 text-[#39ff14] p-3 rounded-lg mb-2 self-end';
+                    messageElement.textContent = message;
+                    chatMessages.appendChild(messageElement);
+                    messageInput.value = '';
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }
+            });
+
+            messageInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    sendButton.click();
+                }
+            });
+        }
+
+        // Post Interactions
+        function toggleLike(postId) {
+            const post = posts.find(p => p.id === parseInt(postId));
+            if (post) {
+                post.isLiked = !post.isLiked;
+                post.likes += post.isLiked ? 1 : -1;
+                renderPosts();
+            }
+        }
+
+        function showPostModal(postId) {
+            const post = posts.find(p => p.id === parseInt(postId));
+            if (post) {
+                const modal = document.getElementById('postModal');
+                document.getElementById('modalImage').src = post.image;
+                document.getElementById('modalUserImage').src = post.userImage;
+                document.getElementById('modalUsername').textContent = post.user;
+                document.getElementById('modalCaption').textContent = post.caption;
+                document.getElementById('modalLikes').textContent = post.likes;
+                document.getElementById('modalComments').textContent = post.comments;
+                modal.classList.remove('hidden');
+            }
+        }
+
+        // Dark Mode Toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        let isDarkMode = true;
+
+        darkModeToggle.addEventListener('click', () => {
+            isDarkMode = !isDarkMode;
+            document.body.style.backgroundColor = isDarkMode ? '#0a0a0a' : '#ffffff';
+            document.body.style.color = isDarkMode ? '#ffffff' : '#0a0a0a';
+            darkModeToggle.innerHTML = isDarkMode ? 
+                '<i class="bi bi-moon-fill text-xl"></i>' : 
+                '<i class="bi bi-sun-fill text-xl"></i>';
+        });
+
+
+        document.getElementById("viewPosts").addEventListener("click", function() {
+        document.getElementById("postsSection").classList.toggle("hidden");
+        });
+
+        document.getElementById("viewHighlights").addEventListener("click", function() {
+        document.getElementById("highlightsSection").classList.toggle("hidden");
+        });
+
+        document.getElementById("uploadProfilePic").addEventListener("change", function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById("profileImage").src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        document.getElementById("saveBio").addEventListener("click", function() {
+            const bioText = document.getElementById("bioInput").value;
+            alert("Bio saved: " + bioText);
+        });
+
+
+
+        document.getElementById("viewPosts").addEventListener("click", function() {
+            document.getElementById("postsSection").classList.toggle("hidden");
+        });
+
+        document.getElementById("viewHighlights").addEventListener("click", function() {
+            document.getElementById("highlightsSection").classList.toggle("hidden");
+        });
+
+        document.getElementById("uploadProfilePic").addEventListener("change", function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById("profileImage").src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        document.getElementById("saveBio").addEventListener("click", function() {
+            const bioText = document.getElementById("bioInput").value;
+            alert("Bio saved: " + bioText);
+        });
+    </script>
+</body>
+</html>

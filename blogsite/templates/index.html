@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Last Walk - A Green Mile Story</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            scroll-behavior: smooth;
+        }
+        .playfair {
+            font-family: 'Playfair Display', serif;
+        }
+        .poppins {
+            font-family: 'Poppins', sans-serif;
+        }
+        .wood-texture {
+            background-image: url('https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?q=80&w=2187&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .wood-texture::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8));
+            z-index: 0;
+        }
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+        .story-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        
+    </style>
+</head>
+<body class="wood-texture min-h-screen text-gray-100">
+    <header class="fixed w-full top-0 z-50 bg-black/30 backdrop-blur-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="playfair text-2xl font-bold">The Last Walk</h1>
+            <a href="{% url 'home' %}" class="flex items-center space-x-2 text-white hover:text-gray-300 transition ml-auto">
+                <i class="bi bi-house-door text-2xl"></i>
+                <span class="poppins font-medium">Back to Home</span>
+            </a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 pt-24 pb-12">
+        <div class="content max-w-3xl mx-auto">
+            <article class="story-card p-8 rounded-lg shadow-2xl fade-in mb-8">
+                <p class="text-lg mb-6 leading-relaxed">Paul sat on his porch, the weight of years pressing against his tired bones. The world had changed, but memories of Cold Mountain Penitentiary never faded. Especially the memory of <em>him</em>.</p>
+                
+                <p class="text-lg mb-6 leading-relaxed">Back in the 1930s, Paul had been a prison guard overseeing death row—what they called <em>the Green Mile</em>, named after the faded lime-colored floors leading to the electric chair. That was where he met John Coffey, a giant of a man with sorrowful eyes and a heart too pure for the world. Coffey had been sentenced to death for a crime Paul knew he didn't commit. But the law was blind, and the wheels of justice rarely stopped for the truth.</p>
+                
+                <p class="text-lg mb-6 leading-relaxed">Coffey wasn't like the other inmates. He was afraid of the dark, kind to everyone, and, most impossibly, he could <em>heal</em>. With just a touch, he took away pain—Paul's infection, a dying woman's suffering, even a little mouse's broken body. "I just take it back," Coffey had said, as if the weight of the world's sorrow passed through him, leaving him exhausted.</p>
+                
+                <p class="text-lg mb-6 leading-relaxed">Paul and his fellow guards knew the truth too late. Coffey wasn't a murderer. He was a miracle. But Coffey had seen too much evil in the world, and he didn't want to run. "I'm tired, boss," he'd said, eyes glistening with sadness. "Tired of people being ugly to each other." And so, Paul had no choice but to lead the most innocent man he'd ever known to his execution. The last walk down <em>the Green Mile</em> was the heaviest of Paul's life.</p>
+                
+                <p class="text-lg mb-6 leading-relaxed">Years passed, but Paul never forgot. The strangest part? He didn't age like other men. Coffey had left something inside him—a piece of that unexplainable power. Paul lived long enough to watch his friends and family fade away, outliving nearly everyone he loved. He often wondered if that was Coffey's final gift or his curse.</p>
+                
+                <p class="text-lg mb-6 leading-relaxed">Now, as Paul sat in the quiet of his old age, he looked at the night sky. Somewhere beyond the stars, Coffey was free, far from the cruelty of this world. And Paul? He was still waiting for his own last walk.</p>
+            </article>
+
+            <div class="text-center fade-in">
+                <blockquote class="playfair italic text-xl text-gray-300">
+                    "I'm tired, boss. Tired of people being ugly to each other."
+                    <footer class="text-sm mt-2 text-gray-400">- John Coffey</footer>
+                </blockquote>
+            </div>
+        </div>
+    </main>
+
+    <footer class="text-center py-6 text-gray-400 content">
+        <p class="poppins text-sm">&copy; 2024 The Last Walk. All rights reserved.</p>
+    </footer>
+</body>
+</html>

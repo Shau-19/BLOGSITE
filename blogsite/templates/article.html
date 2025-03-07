@@ -1,0 +1,51 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article - Dromomania and Life</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script defer src="{% static 'js/script.js' %}"></script>
+</head>
+<body class="wood-texture min-h-screen">
+    <nav class="fixed w-full z-50 bg-black bg-opacity-50 backdrop-blur-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <img src="/static/assets/logo.png" alt="Logo" class="h-10">
+            <a href="{% url 'home' %}" class="poppins text-white hover:text-gray-300 transition">
+                <i class="bi bi-arrow-left mr-2"></i> Back to Home
+            </a>
+            
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 pt-24 pb-12">
+        <article class="max-w-3xl mx-auto text-white relative z-10">
+            <h1 class="playfair text-4xl md:text-5xl font-bold mb-6">Dromomania and Life: A Voyage Through Every Phase</h1>
+            <div class="poppins text-lg leading-relaxed space-y-6">
+                <p>There's something about constantly moving, exploring, and experiencing new places that feels like truly living. Being a dromomaniac—someone with an unshakable urge to travel—allows us to go through a complete cycle of life's phases. Every journey becomes a chapter, and each arc of this circle teaches something invaluable. From witnessing life at its most beautiful to experiencing its harshest realities, from indulging in luxuries to enduring hardships—solo travel exposes you to it all.</p>
+                    
+                    <p>For me, solo travel is a mirror to life itself. It forces you to step into the unknown, where nothing is certain. You realize how easily things can fall apart, and yet, at every setback, you learn how to rebuild. This isn't just a concept—it's something I have personally experienced. At one point, indecisiveness and lack of confidence led me to places I never truly wanted to be, making me feel stuck in situations I didn't choose. But through solo travel, I learned one of the most important lessons: it's YOU who must take the call. And even if you fail, at least it's your decision—YOU own it with confidence rather than regret. It's an empowering realization that has reshaped the way I approach not just travel, but life itself.</p>
+
+                    <p>One of the most profound realizations I've had through solo travel is the idea of trading momentary indulgence for the richness of genuine experience. The world outside your comfort zone isn't always pretty—it's raw, real, and often challenging. But as you witness the struggles of others, you start seeing your own "hardships" in a different light. What may seem difficult for you might be a luxury for someone else. Traveling makes you more empathetic, grateful, and self-aware. More importantly, it teaches you to live without fear or hesitation.</p>
+
+                    <blockquote class="italic border-l-4 border-white pl-4 my-8">
+                        "Twenty years from now, you'll be more disappointed by the things you didn't do than by the ones you did. So throw off the bowlines. Sail away from the safe harbor. Catch the trade winds in your sails. Explore. Dream. Discover."
+                        <footer class="mt-2">- Mark Twain</footer>
+                    </blockquote>
+
+                    <p>At the end of a solo journey, you don't just return with memories—you return transformed. You realize that true assets aren't material possessions but the experiences that shape you. The journey wasn't just a trip; it was a process of self-growth, refining you into a more confident, decisive, and compassionate individual.</p>
+                    
+                    <p>Solo travel, then, is not an expense—it's an investment in self-improvement. It teaches you that the world is vast, full of lessons, and that you are your own best guide.</p>
+                <blockquote class="italic border-l-4 border-white pl-4 my-8">
+                    "Explore. Dream. Discover." – Mark Twain
+                </blockquote>
+            </div>
+        </article>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
+

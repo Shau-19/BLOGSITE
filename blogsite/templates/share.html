@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story Menu - Wooden Blog Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            scroll-behavior: smooth;
+        }
+
+        .playfair {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .poppins {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .wood-texture {
+            background-image: url('https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?q=80&w=2187&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .wood-texture::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8));
+        }
+
+        .story-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .story-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .upload-card {
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+        }
+
+        .upload-card:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body class="wood-texture min-h-screen">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-black bg-opacity-50 backdrop-blur-md">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center w-full">
+                <img src="/static/Shaurya4.jpg" alt="Logo" class="h-10">
+                <div class="ml-auto flex items-center space-x-4">
+                    <a href="#home" class="text-white poppins hover:text-gray-300 transition">Login </a>
+                    <a href="{% url 'home' %}" class="flex items-center space-x-2 text-white hover:text-gray-300 transition">
+                        <i class="bi bi-house-door text-2xl"></i>
+                        <span class="poppins font-medium">Back to Home</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Story Grid Section -->
+    <div class="container mx-auto px-4 pt-24 pb-12">
+        <h1 class="playfair text-4xl md:text-5xl text-white font-bold mb-12 text-center relative z-10">
+            Story Collection
+        </h1>
+    
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Upload Story Card -->
+            <a href="{% url 'uploadS' %}" class="story-card upload-card rounded-lg p-6 flex flex-col items-center justify-center cursor-pointer hover:bg-opacity-20 transition">
+                <i class="bi bi-plus-circle text-5xl text-white mb-4"></i>
+                <h3 class="playfair text-xl text-white font-bold mb-2">Upload Your Story</h3>
+                <p class="poppins text-gray-300 text-center">Share your personal narrative with our community</p>
+            </a>
+    
+            <!-- Upload Article Card -->
+            <a href="{% url 'uploadA' %}" class="story-card upload-card rounded-lg p-6 flex flex-col items-center justify-center cursor-pointer hover:bg-opacity-20 transition">
+                <i class="bi bi-file-earmark-text text-5xl text-white mb-4"></i>
+                <h3 class="playfair text-xl text-white font-bold mb-2">Upload Your Article</h3>
+                <p class="poppins text-gray-300 text-center">Contribute your thoughts and insights</p>
+            </a>
+    
+            <!-- Upload Blog Card -->
+            <a href="{% url 'uploadB' %}" class="story-card upload-card rounded-lg p-6 flex flex-col items-center justify-center cursor-pointer hover:bg-opacity-20 transition">
+                <i class="bi bi-journal-text text-5xl text-white mb-4"></i>
+                <h3 class="playfair text-xl text-white font-bold mb-2">Upload Your Blog</h3>
+                <p class="poppins text-gray-300 text-center">Start your blogging journey here</p>
+            </a>
+    
+            <!-- Example Story Cards -->
+            <div class="story-card rounded-lg p-6">
+                <img src="https://images.unsplash.com/photo-1516414447565-b14be0adf13e?w=800" 
+                     alt="Journey Story" 
+                     class="w-full h-48 object-cover rounded-lg mb-4">
+                <h3 class="playfair text-xl text-white font-bold mb-2">A Journey Through Time</h3>
+                <p class="poppins text-gray-300 mb-4">A captivating tale of adventure and self-discovery</p>
+                <a href="{% url 'story'  %}" class="poppins text-white hover:text-gray-300 inline-flex items-center">
+                    Read More <i class="bi bi-arrow-right ml-2"></i>
+                </a>
+            </div>
+    
+            <div class="story-card rounded-lg p-6">
+                <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800" 
+                     alt="Memories Story" 
+                     class="w-full h-48 object-cover rounded-lg mb-4">
+                <h3 class="playfair text-xl text-white font-bold mb-2">Lost in Memories</h3>
+                <p class="poppins text-gray-300 mb-4">Exploring the depths of human emotions and memories</p>
+                <a href="{% url 'story'  %}" class="poppins text-white hover:text-gray-300 inline-flex items-center">
+                    Read More <i class="bi bi-arrow-right ml-2"></i>
+                </a>
+            </div>
+    
+            <div class="story-card rounded-lg p-6">
+                <img src="https://images.unsplash.com/photo-1519791883288-dc8bd696e667?w=800" 
+                     alt="Wisdom Story" 
+                     class="w-full h-48 object-cover rounded-lg mb-4">
+                <h3 class="playfair text-xl text-white font-bold mb-2">Ancient Wisdom</h3>
+                <p class="poppins text-gray-300 mb-4">Tales passed down through generations</p>
+                <a href="{% url 'story'  %}" class="poppins text-white hover:text-gray-300 inline-flex items-center">
+                    Read More <i class="bi bi-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="relative py-8 bg-black bg-opacity-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <p class="poppins text-gray-400">&copy; 2024 Your Blog Platform. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Add smooth animations for cards on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.story-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.5s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+
+        // Add click handlers for upload cards
+        //document.querySelectorAll('.upload-card').forEach(card => {
+        //    card.addEventListener('click', function() {
+                // You can add your upload logic here
+        //        alert('Upload functionality coming soon!');
+        //    });
+     //   });  
+    
+    </script>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story Menu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            scroll-behavior: smooth;
+        }
+        .playfair {
+            font-family: 'Playfair Display', serif;
+        }
+        .poppins {
+            font-family: 'Poppins', sans-serif;
+        }
+        .wood-texture {
+            background-image: url('https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?q=80&w=2187&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .wood-texture::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8));
+        }
+        .story-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .story-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .story-image {
+            transition: transform 0.3s ease;
+        }
+        .story-card:hover .story-image {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="wood-texture min-h-screen text-white">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-black bg-opacity-50 backdrop-blur-md">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <a href="#" class="flex items-center space-x-3">
+                    <i class="bi bi-book text-2xl"></i>
+                    <span class="playfair text-xl font-bold">Story Collection</span>
+                </a>
+                <a href="/" class="flex items-center space-x-2 hover:text-amber-400 transition">
+                    <i class="bi bi-house-door text-xl"></i>
+                    <span class="poppins">Back Home</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Stories Grid -->
+    <main class="container mx-auto px-4 pt-24 pb-12">
+        <h1 class="playfair text-4xl md:text-5xl font-bold text-center mb-12">Featured Stories</h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Story Card 1 -->
+            <article class="story-card rounded-lg overflow-hidden">
+                <div class="overflow-hidden">
+                    <img src="/static/Shaurya4.jpg" 
+                         alt="The Last Walk" 
+                         class="story-image w-full h-48 object-cover">
+                </div>
+                <div class="p-6">
+                    <h2 class="playfair text-xl font-bold mb-3">The Last Walk</h2>
+                    <p class="poppins text-gray-300 mb-4">A tale of redemption and miracles in Cold Mountain Penitentiary.</p>
+                    <a href="{% url 'story' %}" class="poppins inline-flex items-center text-amber-400 hover:text-amber-300">
+                        Read Story <i class="bi bi-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Story Card 2 -->
+            <article class="story-card rounded-lg overflow-hidden">
+                <div class="overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1518709766631-a6a7f45921c3?w=800" 
+                         alt="The Midnight Library" 
+                         class="story-image w-full h-48 object-cover">
+                </div>
+                <div class="p-6">
+                    <h2 class="playfair text-xl font-bold mb-3">The Midnight Library</h2>
+                    <p class="poppins text-gray-300 mb-4">Between life and death lies an infinite library of possibilities.</p>
+                    <a href="#" class="poppins inline-flex items-center text-amber-400 hover:text-amber-300">
+                        Read Story <i class="bi bi-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Story Card 3 -->
+            <article class="story-card rounded-lg overflow-hidden">
+                <div class="overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1519074069444-1ba4fff66d16?w=800" 
+                         alt="The Shadow's Echo" 
+                         class="story-image w-full h-48 object-cover">
+                </div>
+                <div class="p-6">
+                    <h2 class="playfair text-xl font-bold mb-3">The Shadow's Echo</h2>
+                    <p class="poppins text-gray-300 mb-4">A mystery unfolds in the forgotten corners of an ancient city.</p>
+                    <a href="#" class="poppins inline-flex items-center text-amber-400 hover:text-amber-300">
+                        Read Story <i class="bi bi-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- More Story Cards -->
+            <article class="story-card rounded-lg overflow-hidden">
+                <div class="overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=800" 
+                         alt="Wanderlust" 
+                         class="story-image w-full h-48 object-cover">
+                </div>
+                <div class="p-6">
+                    <h2 class="playfair text-xl font-bold mb-3">Wanderlust</h2>
+                    <p class="poppins text-gray-300 mb-4">Journey through the heart of unexplored territories.</p>
+                    <a href="#" class="poppins inline-flex items-center text-amber-400 hover:text-amber-300">
+                        Read Story <i class="bi bi-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </article>
+
+            <article class="story-card rounded-lg overflow-hidden">
+                <div class="overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?w=800" 
+                         alt="The Time Keeper" 
+                         class="story-image w-full h-48 object-cover">
+                </div>
+                <div class="p-6">
+                    <h2 class="playfair text-xl font-bold mb-3">The Time Keeper</h2>
+                    <p class="poppins text-gray-300 mb-4">A chronicle of moments that shaped destinies.</p>
+                    <a href="#" class="poppins inline-flex items-center text-amber-400 hover:text-amber-300">
+                        Read Story <i class="bi bi-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </article>
+
+            <article class="story-card rounded-lg overflow-hidden">
+                <div class="overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1507915135761-41a0a222c709?w=800" 
+                         alt="Whispers in the Wind" 
+                         class="story-image w-full h-48 object-cover">
+                </div>
+                <div class="p-6">
+                    <h2 class="playfair text-xl font-bold mb-3">Whispers in the Wind</h2>
+                    <p class="poppins text-gray-300 mb-4">Tales carried through generations by the ancient breeze.</p>
+                    <a href="#" class="poppins inline-flex items-center text-amber-400 hover:text-amber-300">
+                        Read Story <i class="bi bi-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative py-8 bg-black bg-opacity-50">
+        <div class="container mx-auto px-4 text-center">
+            <p class="poppins text-gray-400">&copy; 2024 Story Collection. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

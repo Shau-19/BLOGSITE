@@ -1,0 +1,124 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - Wooden Blog Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            scroll-behavior: smooth;
+        }
+
+        .playfair {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .poppins {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .wood-texture {
+            background-image: url('https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?q=80&w=2187&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .wood-texture::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8));
+        }
+
+        .social-link {
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            color: #FFD700;
+        }
+
+        .profile-image {
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body class="wood-texture min-h-screen">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-black bg-opacity-50 backdrop-blur-md">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <a href="{% url 'home' %}" class="flex items-center space-x-2 text-white hover:text-gray-300 transition">
+                    <i class="bi bi-house-door text-2xl"></i>
+                    <span class="poppins font-medium">Back to Home</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="relative min-h-screen pt-24 pb-12 px-4">
+        <div class="container mx-auto max-w-4xl">
+            <div class="bg-black bg-opacity-50 backdrop-blur-md rounded-2xl p-8 md:p-12 relative z-10">
+                <!-- Profile Section -->
+                <div class="flex flex-col md:flex-row items-center gap-8 mb-12">
+                    <img src="{% static 'Shaurya Jain/Shaurya2.jpg'%}" 
+                         alt="Shaurya Jain" 
+                         class="w-48 h-48 rounded-full object-cover profile-image">
+                    
+                    <div class="text-center md:text-left">
+                        <h1 class="playfair text-4xl text-white font-bold mb-4">Shaurya Jain</h1>
+                        <p class="poppins text-gray-300 text-lg mb-6">Tech Enthusiast | Writer | Social Science Enthusiast</p>
+                        <!-- Social Links -->
+                        <div class="flex justify-center md:justify-start space-x-6">
+                            <a href="https://www.instagram.com/sh_au_rya_19/" class="social-link text-white text-2xl">
+                                <i class="bi bi-instagram"></i>
+                            </a>
+                            <a href="https://x.com/jain_shaurya19" class="social-link text-white text-2xl">
+                                <i class="bi bi-twitter"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/shaurya-jain-962aba326/" class="social-link text-white text-2xl">
+                                <i class="bi bi-linkedin"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- About Text -->
+                <div class="poppins text-gray-200 text-lg leading-relaxed space-y-6">
+                    <p>Hello Readers!</p>
+                    <p>I'm Shaurya Jain, a 2nd-year undergrad, a tech enthusiast by the world's choice but a writer and social science enthusiast by heart. I have a deep passion for exploring geopolitical and historical issues, but I also love expressing my creativity through storytelling. While technology is my chosen field, writing is my true voice.</p>
+                    <p>This platform is not just about sharing my stories—it's about creating a space for you to share yours. Whether you have thought-provoking insights, personal experiences, or creative expressions, this is your place to let the world hear your voice.</p>
+                    <p>Let's connect, inspire, and build a community where words make an impact!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Fade in animation on load
+        document.addEventListener('DOMContentLoaded', function() {
+            const content = document.querySelector('.container');
+            content.style.opacity = '0';
+            content.style.transform = 'translateY(20px)';
+            content.style.transition = 'opacity 1s ease, transform 1s ease';
+            
+            setTimeout(() => {
+                content.style.opacity = '1';
+                content.style.transform = 'translateY(0)';
+            }, 100);
+        });
+    </script>
+</body>
+</html>

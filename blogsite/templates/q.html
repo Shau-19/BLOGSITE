@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wooden Blog Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            scroll-behavior: smooth;
+        }
+        .playfair { font-family: 'Playfair Display', serif; }
+        .poppins { font-family: 'Poppins', sans-serif; }
+        .wood-texture {
+            background-image: url('https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?q=80&w=2187&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .wood-texture::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8));
+        }
+        .article-page { display: none; }
+    </style>
+</head>
+<body class="wood-texture min-h-screen">
+    <div id="homePage">
+        <nav class="fixed w-full z-50 bg-black bg-opacity-50 backdrop-blur-md">
+            <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+                <img src="static/Shaurya4.jpg" alt="Logo" class="h-10 logo">
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link text-white poppins hover:text-gray-300 transition">Home</a>
+                    <a href="#articles" class="nav-link text-white poppins hover:text-gray-300 transition">Articles</a>
+                    <a href="#about" class="nav-link text-white poppins hover:text-gray-300 transition">About</a>
+                </div>
+                <button class="md:hidden text-white text-2xl"><i class="bi bi-list"></i></button>
+            </div>
+        </nav>
+        <section id="home" class="relative min-h-screen flex items-center justify-center px-4">
+            <div class="text-center z-10">
+                <h1 class="playfair text-4xl md:text-6xl text-white font-bold mb-6 title">Welcome to Your Story</h1>
+                <p class="poppins text-gray-300 text-lg md:text-xl mb-8 max-w-2xl mx-auto subtitle">Discover thoughtful articles and personal narratives.</p>
+                <button onclick="scrollToArticles()" class="poppins bg-white text-black px-8 py-3 rounded-full hover:bg-gray-200 transition hover-scale">Start Reading</button>
+            </div>
+        </section>
+        <section id="articles" class="relative py-20 px-4">
+            <div class="container mx-auto">
+                <h2 class="playfair text-3xl md:text-4xl text-white font-bold mb-12 text-center article-title">Featured Articles</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <article class="article-card rounded-lg p-6 article">
+                        <img src="static/Shaurya.jpg" alt="Article 1" class="w-full h-48 object-cover rounded-lg mb-4">
+                        <h3 class="playfair text-xl text-white font-bold mb-2">The Art of Storytelling</h3>
+                        <p class="poppins text-gray-300 mb-4">Explore compelling narratives.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            gsap.from(".logo", { opacity: 0, y: -50, duration: 1 });
+            gsap.from(".nav-link", { opacity: 0, x: -30, duration: 1, stagger: 0.2 });
+            gsap.from(".title", { opacity: 0, scale: 0.8, duration: 1, delay: 0.5 });
+            gsap.from(".subtitle", { opacity: 0, y: 20, duration: 1, delay: 0.8 });
+            gsap.from(".article-title", { opacity: 0, y: 30, duration: 1, delay: 0.5 });
+            gsap.from(".article", { opacity: 0, y: 50, duration: 1, delay: 0.7, stagger: 0.3 });
+        });
+        function scrollToArticles() {
+            document.getElementById("articles").scrollIntoView({ behavior: "smooth" });
+        }
+    </script>
+</body>
+</html>
