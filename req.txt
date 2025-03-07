@@ -1,0 +1,6 @@
+Django
+gunicorn
+whitenoise
+psycopg2-binary  # Only if using PostgreSQL
+djangorestframework  # If using Django REST API
+django-environ
